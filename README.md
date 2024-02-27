@@ -1,6 +1,4 @@
-# K8S lab on Hyperv
-
-WIP
+# K8S lab on Hyperv (WIP)
 
 ## Pre-requisites
 
