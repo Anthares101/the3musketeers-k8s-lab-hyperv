@@ -32,7 +32,6 @@
 Vagrant is gonna start three Ubuntu machines alongside a NAT switch called T3MSwitch with the
 IP range 10.10.20.0/24, you may need to tweak this a bit if you have conflicts.
 
-Deploy or destroy everything:
 ```bash
 vagrant up
 ```
@@ -48,4 +47,10 @@ If you want to just get rid of everything execute these commands:
    ```
    Remove-VMSwitch -SwitchName "T3MSwitch" -Force
    Remove-NetNat -Confirm:$false -Name "T3MNetwork"
+   ```
+3. Uninstall Hyper-V:
+   ```
+   Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
+   Disable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform
+   Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
    ```
