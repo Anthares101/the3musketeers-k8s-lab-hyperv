@@ -32,6 +32,7 @@
 Vagrant is gonna start three Ubuntu machines alongside a NAT switch called T3MSwitch with the
 IP range 10.10.20.0/24, you may need to tweak this a bit if you have conflicts.
 
+Put the repository directory anywhere **outside** WSL, for some reason Vagrant hates to be launched in WSL directories:
 ```bash
 vagrant up
 ```
