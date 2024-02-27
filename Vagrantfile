@@ -47,10 +47,10 @@ Vagrant.configure("2") do |config|
 	  # Hack for setting static IPs
       box.trigger.before :reload do |trigger|
         trigger.info = "Setting Hyper-V switch to 'LTMSwitch' to allow for static IP..."
-        trigger.run = {privileged: "true", powershell_elevated_interactive: "true", path: "./scripts/set-hyperv-switch.ps1", args = [vm[:name]]}
+        trigger.run = {privileged: "true", powershell_elevated_interactive: "true", path: "./scripts/set-hyperv-switch.ps1", args: [vm[:name]]}
       end
       
-	  box.vm.provision "shell", path: "./scripts/configure-static-ip.sh", args = [vm[:ip]]
+	  box.vm.provision "shell", path: "./scripts/configure-static-ip.sh", args: [vm[:ip]]
 	  box.vm.provision :reload
 	  
 	  # Install K8S
