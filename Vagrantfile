@@ -50,10 +50,10 @@ Vagrant.configure("2") do |config|
         trigger.run = {privileged: "true", inline: "powershell.exe -File scripts/set-hyperv-switch.ps1 #{vm[:name]}"}
       end
       
-	  box.vm.provision "shell", path: "./scripts/configure-static-ip.sh", args: [vm[:ip]]
-	  box.vm.provision :reload
+      box.vm.provision "shell", path: "./scripts/configure-static-ip.sh", args: [vm[:ip]]
+      box.vm.provision :reload
 	  
-	  # Install K8S
+      # Install K8S
       # box.vm.provision "ansible" do |ansible| 
       #   ansible.compatibility_mode = "2.0"
       #   ansible.playbook = "ansible/#{vm[:name]}.yml"
