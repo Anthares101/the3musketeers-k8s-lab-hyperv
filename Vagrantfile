@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
   # Types of connection
   com_ssh = "ssh"
 
-  # VM configuration (Make sure IPs are in the range 10.10.0.0/24, the gateway is 10.10.20.1)
+  # VM configuration (Make sure IPs are in the range 10.10.20.0/24, the gateway is 10.10.20.1)
   vms = [
          {name: "athos", ip: "10.10.20.2", box: ubuntu2204, communicator:com_ssh},
          {name: "porthos", ip: "10.10.20.3", box: ubuntu2204, communicator:com_ssh},
