@@ -1,6 +1,3 @@
-# Be sure NOT to execute "systemctl restart network" here, so the changes take
-# effect on reboot instead of immediately, which would disconnect the provisioner.
-
 #!/bin/sh
 
 echo 'Setting static IP address for Hyper-V...'
