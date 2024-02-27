@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
         hv.enable_enhanced_session_mode = true 
       end
 	  
-	  # Hack for setting static IPs
+      # Hack for setting static IPs
       box.trigger.before :reload do |trigger|
         trigger.info = "Setting Hyper-V switch to 'LTMSwitch' to allow for static IP..."
         trigger.run = {privileged: "true", inline: "powershell.exe -File scripts/set-hyperv-switch.ps1 #{vm[:name]}"}
