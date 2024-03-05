@@ -8,7 +8,7 @@ network:
   ethernets:
     eth0:
       dhcp4: no
-      addresses: [$2/24]
+      addresses: [$1/24]
       gateway4: 10.10.20.1
       nameservers:
         addresses: [8.8.8.8,8.8.4.4]
