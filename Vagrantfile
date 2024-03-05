@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   # Setup new NAT switch
   config.trigger.before :up do |trigger|
     trigger.info = "Creating 'LTMSwitch' Hyper-V switch if it does not exist..."
-    trigger.run = {privileged: "true", inline: "powershell.exe -File scripts/create-nat-hyperv-switch.ps1"}
+    trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/create-nat-hyperv-switch.ps1"}
   end
   
   config.vm.synced_folder '.', '/vagrant', disabled: true
@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
       # Hack for setting static IPs
       box.trigger.before :reload do |trigger|
         trigger.info = "Setting Hyper-V switch to 'LTMSwitch' to allow for static IP..."
-        trigger.run = {privileged: "true", inline: "powershell.exe -File scripts/set-hyperv-switch.ps1 #{vm[:name]}"}
+        trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/set-hyperv-switch.ps1 #{vm[:name]}"}
       end
       
       box.vm.provision "shell", path: "./scripts/configure-static-ip.sh", args: [vm[:ip]]
