@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   
   # Setup new NAT switch
   config.trigger.before :up do |trigger|
-    trigger.info = "Creating 'LTMSwitch' Hyper-V switch if it does not exist..."
+    trigger.info = "Creating 'T3MSwitch' Hyper-V switch if it does not exist..."
     trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/create-nat-hyperv-switch.ps1"}
   end
   
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
       # box.vm.network "public_network", :bridge => 'Default Switch'
 
       box.vm.provider "hyperv" do |hv|
-        hv.vmname = "ltm_#{vm[:name]}"
+        hv.vmname = "t3m_#{vm[:name]}"
         hv.cpus = 2
         hv.memory = "2048"
         hv.enable_enhanced_session_mode = true 
@@ -46,8 +46,8 @@ Vagrant.configure("2") do |config|
 	  
       # Hack for setting static IPs
       box.trigger.before :reload do |trigger|
-        trigger.info = "Setting Hyper-V switch to 'LTMSwitch' to allow for static IP..."
-        trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/set-hyperv-switch.ps1 #{vm[:name]}"}
+        trigger.info = "Setting Hyper-V switch to 'T3MSwitch' to allow for static IP..."
+        trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/set-hyperv-switch.ps1 t3m_#{vm[:name]}"}
       end
       
       box.vm.provision "shell", path: "./scripts/configure-static-ip.sh", args: [vm[:ip]]
