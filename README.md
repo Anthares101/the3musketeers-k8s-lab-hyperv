@@ -34,6 +34,7 @@ IP range 10.10.20.0/24, you may need to tweak this a bit if you have conflicts.
 
 Put the repository directory anywhere **outside** WSL, for some reason Vagrant hates to be launched in WSL directories:
 ```bash
+# When asked, choose the default Switch or any other with a DHCP server attached
 vagrant up
 ```
 
