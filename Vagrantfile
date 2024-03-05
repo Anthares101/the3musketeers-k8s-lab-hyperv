@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
       box.vm.hostname = vm[:name]
       box.vm.box_check_update = false
       box.vm.communicator = vm[:communicator]
-      box.vm.network "public_network", :bridge => 'Default Switch'
+      # box.vm.network "public_network", :bridge => 'Default Switch'
 
       box.vm.provider "hyperv" do |hv|
         hv.vmname = "ltm_#{vm[:name]}"
