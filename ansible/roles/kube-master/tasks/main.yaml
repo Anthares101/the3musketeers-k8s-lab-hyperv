@@ -1,7 +1,7 @@
 ---
   - name: install Kubectl
     apt:
-      name: kubectl=1.29.*
+      name: kubectl={{ kubernetes_version  }}.*
       state: present
       force: yes # allow downgrades
       
@@ -36,12 +36,12 @@
   - name: initialize the cluster (this could take some time)
     shell: kubeadm init --config /etc/kubernetes/kubeadm-config.yaml >> cluster_initialized.log
     args:
-      chdir: /home/ubuntu
+      chdir: /home/vagrant
       creates: cluster_initialized.log
   
   - name: create .kube directory
     become: yes
-    become_user: ubuntu
+    become_user: vagrant
     file:
       path: $HOME/.kube
       state: directory
@@ -50,14 +50,22 @@
   - name: copy admin.conf to user's kube config
     copy:
       src: /etc/kubernetes/admin.conf
-      dest: /home/ubuntu/.kube/config
+      dest: /home/vagrant/.kube/config
       remote_src: yes
-      owner: ubuntu
+      owner: vagrant
   
   - name: install Pod network
     become: yes
-    become_user: ubuntu
+    become_user: vagrant
     shell: kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml >> pod_network_setup.log
     args:
       chdir: $HOME
       creates: pod_network_setup.log
+  
+  - name: get join command
+    shell: kubeadm token create --print-join-command
+    register: join_command_raw
+
+  - name: set join command
+    set_fact:
+      kube_token: "{{ join_command_raw.stdout_lines[0] }}"

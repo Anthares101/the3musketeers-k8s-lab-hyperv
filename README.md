@@ -11,6 +11,7 @@
 2. Windows Subsystem for Linux (WSL):
    ```
    wsl --install -d ubuntu
+   wsl --set-version ubuntu 1
    ```
 3. Vagrant (Inside WSL):
    ```

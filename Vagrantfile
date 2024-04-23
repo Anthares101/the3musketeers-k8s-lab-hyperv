@@ -52,13 +52,13 @@ Vagrant.configure("2") do |config|
       
       box.vm.provision "shell", path: "./scripts/configure-static-ip.sh", args: [vm[:ip]]
       box.vm.provision :reload
-	  
-      # Install K8S
-      # box.vm.provision "ansible" do |ansible| 
-      #   ansible.compatibility_mode = "2.0"
-      #   ansible.playbook = "ansible/#{vm[:name]}.yml"
-      # end
     end
   end
- 
+
+  Vagrant.configure("2") do |config|
+    config.vm.provision "ansible" do |ansible|
+      ansible.playbook = "ansible/main.yml"
+    end
+  end
+
 end
