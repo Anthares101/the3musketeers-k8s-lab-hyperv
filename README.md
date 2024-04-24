@@ -43,6 +43,13 @@ Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-p
    ```bash
    vagrant plugin install vagrant-reload
    ```
+7. Install Ansible (Inside WSL):
+   ```bash
+   sudo apt install python3-pip -y
+   echo 'PATH=~/.local/bin:$PATH' >> ~/.bashrc
+   source ~/.bashrc
+   pip3 install ansible
+   ```
 
 ## Choosing Kubernetes version
 
