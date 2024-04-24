@@ -1,13 +1,13 @@
 ---
 - name: Initial setup
-  hosts: t3m_porthos
+  hosts: porthos
   gather_facts: false
 
   roles:
     - role: kube-dependencies
 
 - name: Get token from master
-  hosts: t3m_athos
+  hosts: athos
   gather_facts: false
 
   tasks:
@@ -20,7 +20,7 @@
         kube_token: "{{ join_command_raw.stdout_lines[0] }}"
 
 - name: Configure worker node
-  hosts: t3m_porthos
+  hosts: porthos
   gather_facts: false
 
   roles:
