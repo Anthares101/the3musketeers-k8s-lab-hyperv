@@ -1,6 +1,7 @@
 ---
 - name: Initial setup
   hosts: aramis
+  become: true
   gather_facts: false
 
   roles:
@@ -21,6 +22,7 @@
 
 - name: Configure worker node
   hosts: aramis
+  become: true
   gather_facts: false
 
   roles:

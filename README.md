@@ -1,5 +1,7 @@
 # K8S lab on Hyperv (WIP)
 
+The Ansible playbooks used to provision K8S were obtained from [torgeirl/kubernetes-playbooks](https://github.com/torgeirl/kubernetes-playbooks).
+
 ## Pre-requisites
 
 1. Enable Hyper-V:
