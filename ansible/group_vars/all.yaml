@@ -1,1 +1,2 @@
 kubernetes_version: 1.29
+ansible_architecture: x86_64
