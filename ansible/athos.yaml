@@ -1,13 +1,13 @@
 ---
 - name: Initial setup
-  hosts: t3m_athos
+  hosts: athos
   gather_facts: false
 
   roles:
     - role: kube-dependencies
 
 - name: Configure master node
-  hosts: t3m_athos
+  hosts: athos
   gather_facts: false
 
   roles:
