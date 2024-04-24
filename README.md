@@ -66,7 +66,11 @@ kubectl get nodes
 
 The command result should be something like:
 ```
-
+vagrant@athos:~$ kubectl get nodes
+NAME      STATUS   ROLES           AGE     VERSION
+aramis    Ready    <none>          2m12s   v1.29.4
+athos     Ready    control-plane   146m    v1.29.4
+porthos   Ready    <none>          20m     v1.29.4
 ```
 
 ## Clean up
