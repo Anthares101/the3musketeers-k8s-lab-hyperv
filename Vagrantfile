@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
 
       box.vm.provision "ansible" do |ansible| 
         ansible.compatibility_mode = "2.0"
-        ansible.limit = 'athos, porthos, aramis'
+        ansible.limit = "#{vms[0][:name]}, #{vms[1][:name]}, #{vms[2][:name]}"
         ansible.playbook = "ansible/#{vm[:name]}.yaml"
       end
     end

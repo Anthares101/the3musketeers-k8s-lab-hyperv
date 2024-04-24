@@ -2,5 +2,5 @@
   - name: join cluster
     shell: "{{ hostvars['athos'].kube_token }} >> node_joined.log"
     args:
-      chdir: /home/ubuntu
+      chdir: /home/vagrant
       creates: node_joined.log
