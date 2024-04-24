@@ -55,16 +55,16 @@ vagrant up
 
 If you want to just get rid of everything execute these commands:
 1. Remove machines:
-   ```
+   ```bash
    vagrant destroy -f
    ```
 2. In Powershell as administrator remove networking stuff:
-   ```
+   ```powershell
    Remove-VMSwitch -SwitchName "T3MSwitch" -Force
    Remove-NetNat -Confirm:$false -Name "T3MNetwork"
    ```
 3. Uninstall Hyper-V:
-   ```
+   ```powershell
    Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
    Disable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform
    Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
