@@ -1,0 +1,27 @@
+---
+- name: Initial setup
+  hosts: t3m_porthos
+  gather_facts: false
+
+  roles:
+    - role: kube-dependencies
+
+- name: Get token from master
+  hosts: t3m_athos
+  gather_facts: false
+
+  tasks:
+    - name: get join command
+    shell: kubeadm token create --print-join-command
+    register: join_command_raw
+
+    - name: set join command
+      set_fact:
+        kube_token: "{{ join_command_raw.stdout_lines[0] }}"
+
+- name: Configure worker node
+  hosts: t3m_porthos
+  gather_facts: false
+
+  roles:
+    - role: kube-worker
