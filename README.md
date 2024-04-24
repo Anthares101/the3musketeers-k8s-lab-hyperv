@@ -1,6 +1,8 @@
 # K8S lab on Hyperv (WIP)
 
-The Ansible playbooks used to provision K8S were obtained from [torgeirl/kubernetes-playbooks](https://github.com/torgeirl/kubernetes-playbooks).
+The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements. For now the project only deploy the Kubernetes cluster but different scenarios will be added in the future in the form of Helm charts.
+
+Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-playbooks](https://github.com/torgeirl/kubernetes-playbooks).
 
 ## Pre-requisites
 
@@ -42,6 +44,10 @@ The Ansible playbooks used to provision K8S were obtained from [torgeirl/kuberne
    vagrant plugin install vagrant-reload
    ```
 
+## Choosing Kubernetes version
+
+You can tweak what Kubernetes version is gonna be installed by changing the variable `kubernetes_version` in the file `ansible/group_vars/all.yaml`.
+
 ## Deploy
 
 Vagrant is gonna start three Ubuntu machines alongside a NAT switch called T3MSwitch with the
@@ -51,6 +57,16 @@ Put the repository directory anywhere **outside** WSL, for some reason Vagrant h
 ```bash
 # When asked, choose the Default Switch or any other with a DHCP server attached
 vagrant up
+```
+
+In order to check the cluster status, connect to `t3m_athos` and login with the credentials `vagrant:vagrant`. Now execute this:
+```bash
+kubectl get nodes
+```
+
+The command result should be something like:
+```
+
 ```
 
 ## Clean up
