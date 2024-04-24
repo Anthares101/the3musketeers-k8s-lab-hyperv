@@ -12,8 +12,8 @@
 
   tasks:
     - name: get join command
-    shell: kubeadm token create --print-join-command
-    register: join_command_raw
+      shell: kubeadm token create --print-join-command
+      register: join_command_raw
 
     - name: set join command
       set_fact:
