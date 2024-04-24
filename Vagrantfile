@@ -55,6 +55,9 @@ Vagrant.configure("2") do |config|
 
       box.vm.provision "ansible" do |ansible| 
         ansible.compatibility_mode = "2.0"
+        ansible.groups = {
+          "nodes" => [vms[0][:name], vm[:name]],
+        }
         ansible.playbook = "ansible/#{vm[:name]}.yaml"
       end
     end

@@ -1,6 +1,6 @@
 ---
   - name: join cluster
-    shell: "{{ hostvars[groups['master'][0]]['kube_token'] }} >> node_joined.log"
+    shell: "{{ hostvars['athos'].kube_token }} >> node_joined.log"
     args:
       chdir: /home/ubuntu
       creates: node_joined.log
