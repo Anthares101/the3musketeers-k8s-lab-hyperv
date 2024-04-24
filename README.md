@@ -3,18 +3,31 @@
 ## Pre-requisites
 
 1. Enable Hyper-V:
-   ```
+   ```powershell
    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
    Enable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform
    Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
    ```
-2. Windows Subsystem for Linux (WSL):
-   ```
+2. Install Windows Subsystem for Linux (WSL):
+   ```powershell
    wsl --install -d ubuntu
    wsl --set-version ubuntu 1
    ```
-3. Vagrant (Inside WSL):
+3. Add this to `/etc/wsl.conf` inside WSL:
    ```
+   ...
+   [automount]
+   enabled = true
+   root = /mnt/
+   options = "metadata,umask=77,fmask=11"
+   mountFsTab = false
+   ```
+4. Now restart `LxssManager`:
+   ```powershell
+   Restart-Service -Name "LxssManager"
+   ```
+5 Install Vagrant (Inside WSL):
+   ```bash
    echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
    echo 'export VAGRANT_DEFAULT_PROVIDER=hyperv' >> ~/.bashrc
    source ~/.bashrc
@@ -22,8 +35,8 @@
    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
    sudo apt update && sudo apt install vagrant -y
    ```
-4. Install this Vagrant plugin (Inside WSL):
-   ```
+6. Install this Vagrant plugin (Inside WSL):
+   ```bash
    vagrant plugin install vagrant-reload
    ```
 
