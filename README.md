@@ -6,18 +6,18 @@ Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-p
 
 ## Pre-requisites
 
-1. Enable Hyper-V:
+1. Enable Hyper-V as administrator:
    ```powershell
    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
    Enable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform
    Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
    ```
-2. Install Windows Subsystem for Linux (WSL):
+2. Install Windows Subsystem for Linux (WSL) as administrator:
    ```powershell
    wsl --install -d ubuntu
    wsl --set-version ubuntu 1
    ```
-3. Add this to `/etc/wsl.conf` inside WSL:
+3. Add this to `/etc/wsl.conf` (Inside WSL):
    ```
    ...
    [automount]
@@ -26,7 +26,7 @@ Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-p
    options = "metadata,umask=77,fmask=11"
    mountFsTab = false
    ```
-4. Now restart `LxssManager`:
+4. Now restart `LxssManager` as administrator:
    ```powershell
    Restart-Service -Name "LxssManager"
    ```
@@ -53,7 +53,7 @@ You can tweak what Kubernetes version is gonna be installed by changing the vari
 Vagrant is gonna start three Ubuntu machines alongside a NAT switch called T3MSwitch with the
 IP range 10.10.20.0/24, you may need to tweak this a bit if you have conflicts.
 
-Put the repository directory anywhere **outside** WSL, for some reason Vagrant hates to be launched in WSL directories:
+Put the repository directory anywhere **outside** WSL, for some reason Vagrant hates to be launched in WSL directories. Also, make sure the WSL console is run as administrator:
 ```bash
 # When asked, choose the Default Switch or any other with a DHCP server attached
 vagrant up
