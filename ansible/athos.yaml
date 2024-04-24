@@ -2,7 +2,6 @@
 - name: Initial setup
   hosts: athos
   become: true
-  gather_facts: false
 
   roles:
     - role: kube-dependencies
