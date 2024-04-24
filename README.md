@@ -26,7 +26,7 @@
    ```powershell
    Restart-Service -Name "LxssManager"
    ```
-5 Install Vagrant (Inside WSL):
+5. Install Vagrant (Inside WSL):
    ```bash
    echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
    echo 'export VAGRANT_DEFAULT_PROVIDER=hyperv' >> ~/.bashrc
