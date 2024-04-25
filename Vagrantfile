@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
       box.vm.hostname = vm[:name]
       box.vm.box_check_update = false
       box.vm.communicator = vm[:communicator]
-      # box.vm.network "public_network", :bridge => 'Default Switch'
+      box.vm.network "public_network", :bridge => 'Default Switch'
 
       box.vm.provider "hyperv" do |hv|
         hv.vmname = "t3m_#{vm[:name]}"
@@ -44,9 +44,14 @@ Vagrant.configure("2") do |config|
         hv.enable_enhanced_session_mode = true 
       end
 	  
-      # Hack for setting static IPs
+      # Hack to avoid selecting the Switch manually
       box.trigger.before :reload do |trigger|
-        trigger.info = "Setting Hyper-V switch to 'T3MSwitch' to allow for static IP..."
+        trigger.info = "Static IP configuration ready"
+        trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/static-ip-set.ps1 t3m_#{vm[:name]}"}
+      end
+      
+      config.trigger.after :"VagrantPlugins::HyperV::Action::SetName", type: :action do |trigger|
+        trigger.info = "If Static IP set force VM to use T3MSwitch switch"
         trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/set-hyperv-switch.ps1 t3m_#{vm[:name]}"}
       end
       
