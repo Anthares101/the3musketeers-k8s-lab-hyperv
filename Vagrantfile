@@ -12,6 +12,12 @@ Vagrant.configure("2") do |config|
     trigger.info = "Creating 'T3MSwitch' Hyper-V switch if it does not exist..."
     trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/create-nat-hyperv-switch.ps1"}
   end
+
+  # Clean tmp directory
+  config.trigger.after :destroy do |trigger|
+    trigger.info = "Cleaning tmp directory if necessary..."
+    trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/delete-tmp.ps1"}
+  end
   
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
