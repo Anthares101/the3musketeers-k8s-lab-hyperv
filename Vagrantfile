@@ -13,10 +13,10 @@ Vagrant.configure("2") do |config|
     trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/create-nat-hyperv-switch.ps1"}
   end
 
-  # Clean tmp directory
+  # Clean tmp directory and NAT switch
   config.trigger.after :destroy do |trigger|
-    trigger.info = "Cleaning tmp directory if necessary..."
-    trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/delete-tmp.ps1"}
+    trigger.info = "Cleaning everything else..."
+    trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/cleanup.ps1"}
   end
   
   config.vm.synced_folder '.', '/vagrant', disabled: true
