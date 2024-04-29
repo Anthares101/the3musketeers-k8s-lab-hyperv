@@ -56,7 +56,7 @@ Vagrant.configure("2") do |config|
         trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/static-ip-set.ps1 t3m_#{vm[:name]}"}
       end
       
-      config.trigger.after :"VagrantPlugins::HyperV::Action::SetName", type: :action do |trigger|
+      box.trigger.after :"VagrantPlugins::HyperV::Action::Configure", type: :action do |trigger|
         trigger.info = "If Static IP set force VM to use T3MSwitch switch"
         trigger.run = {privileged: "true", inline: "powershell.exe -ep bypass -File scripts/set-hyperv-switch.ps1 t3m_#{vm[:name]}"}
       end
