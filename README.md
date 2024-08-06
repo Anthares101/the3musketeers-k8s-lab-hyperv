@@ -83,11 +83,16 @@ porthos   Ready    <none>          20m     v1.29.4
 ## Clean up
 
 If you want to just get rid of everything execute these commands:
-1. Remove lab:
+1. Remove lab (Inside WSL):
    ```bash
    vagrant destroy -f
    ```
-2. Uninstall Hyper-V:
+2. Uninstall WSL as administrator:
+   ```powershell
+   wsl --unregister
+   Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-WSL
+   ```  
+3. Uninstall Hyper-V as administrator:
    ```powershell
    Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
    Disable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform
