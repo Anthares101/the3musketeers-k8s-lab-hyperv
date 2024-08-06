@@ -1,6 +1,6 @@
-# K8S lab on Hyperv (WIP)
+# K8S lab on Hyperv
 
-The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements. For now the project only deploy the Kubernetes cluster but different scenarios will be added in the future in the form of Helm charts.
+The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements. For now the project only deploy the Kubernetes cluster but different scenarios will be added in the future as Ansible playbooks.
 
 Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-playbooks](https://github.com/torgeirl/kubernetes-playbooks).
 
