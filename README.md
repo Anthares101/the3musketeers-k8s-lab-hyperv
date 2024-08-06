@@ -91,7 +91,7 @@ If you want to just get rid of everything execute these commands:
    ```powershell
    wsl --unregister ubuntu
    # Now, go ahead and uninstall Ubuntu from the Windows program list
-   Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-WSL
+   Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
    ```  
 3. Uninstall Hyper-V as administrator:
    ```powershell
