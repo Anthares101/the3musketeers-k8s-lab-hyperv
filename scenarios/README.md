@@ -1,6 +1,6 @@
 # Scenarios
 
-All the scenarios have 2 Ansible playbooks, one to install the scenario and another for uninstalling it. You should be able to install different scenerarios at once without issues.
+All the scenarios have 2 Ansible playbooks, one to install the scenario and another for uninstalling it. You should be able to install different scenarios at once without issues.
 
 **More scenarios will be added in the future! Pull requests are also welcome!**
 
