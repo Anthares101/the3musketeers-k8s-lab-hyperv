@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ssh-pod
+  name: ssh-pod
+  namespace: overpowered-service-account
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-pod
+  template:
+    metadata:
+      labels:
+        app: ssh-pod
+    spec:
+      serviceAccountName: op-sa
+      containers:
+      - image: lscr.io/linuxserver/openssh-server:latest
+        imagePullPolicy: Always
+        name: ssh-pod
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Europe/Madrid"
+        - name: SUDO_ACCESS
+          value: "false"
+        - name: PASSWORD_ACCESS
+          value: "true"
+        - name: USER_PASSWORD
+          value: "pwned"
+        - name: USER_NAME
+          value: "pwned"

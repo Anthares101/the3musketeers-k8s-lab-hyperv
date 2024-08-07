@@ -1,0 +1,39 @@
+---
+- name: Uninstall scenario
+  hosts: master
+  gather_facts: false
+  collections:
+  - community.kubernetes
+
+  tasks:
+  - name: Ensure pip is installed
+    become: true
+    apt:
+      name: 
+      - python3-pip
+      state: present
+      update_cache: true
+  - name: Ensure kubernetes Python library is installed.
+    pip:
+      name: kubernetes
+      state: present
+  - name: Delete SSH pod
+    kubernetes.core.k8s:
+      state: absent
+      definition: "{{ lookup('template', 'deployment.yaml.j2') | from_yaml }}"
+  - name: Delete service
+    kubernetes.core.k8s:
+      state: absent
+      definition: "{{ lookup('template', 'svc.yaml.j2') | from_yaml }}"
+  - name: Delete role binding
+    kubernetes.core.k8s:
+      state: absent
+      definition: "{{ lookup('template', 'binding.yaml.j2') | from_yaml }}"
+  - name: Delete service account
+    kubernetes.core.k8s:
+      state: absent
+      definition: "{{ lookup('template', 'sa.yaml.j2') | from_yaml }}"
+  - name: Delete scenario namespace
+    kubernetes.core.k8s:
+      state: absent
+      definition: "{{ lookup('template', 'namespace.yaml.j2') | from_yaml }}"

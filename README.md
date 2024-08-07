@@ -1,6 +1,6 @@
 # K8S lab on Hyperv
 
-The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements. For now the project only deploy the Kubernetes cluster but different scenarios will be added in the future as Ansible playbooks.
+The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements.
 
 Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-playbooks](https://github.com/torgeirl/kubernetes-playbooks).
 
@@ -79,6 +79,10 @@ aramis    Ready    <none>          2m12s   v1.29.4
 athos     Ready    control-plane   146m    v1.29.4
 porthos   Ready    <none>          20m     v1.29.4
 ```
+
+## Scenarios
+
+The scenarios are installed/uninstalled using Ansible playbooks, visit the [scenarios/](scenarios/) directory to check the available scenarios and learn more about how to use the playbooks provided.
 
 ## Clean up
 
