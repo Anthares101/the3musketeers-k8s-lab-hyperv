@@ -14,7 +14,7 @@ Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-p
    ```
 2. Install Windows Subsystem for Linux (WSL) as administrator:
    ```powershell
-   wsl --install -d ubuntu
+   wsl --install -d ubuntu # You will need to open the Ubuntu application after this command to complete the installation
    wsl --set-version ubuntu 1
    ```
 3. Add this to `/etc/wsl.conf` (Inside WSL):
@@ -41,6 +41,7 @@ Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-p
    ```
 6. Install this Vagrant plugin (Inside WSL):
    ```bash
+   # If vagrant gives you an error, try to reboot and try again
    vagrant plugin install vagrant-reload
    ```
 7. Install Ansible (Inside WSL):
