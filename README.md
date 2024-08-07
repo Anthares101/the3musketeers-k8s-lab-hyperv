@@ -2,7 +2,7 @@
 
 # K8S lab on Hyper-V
 
-The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements.
+The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements. The minimun hardware requirements are at least 8GB of RAM and 4 CPU cores.
 
 ![Image of the lab up and running](./static/lab-ready.png)
 
