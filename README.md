@@ -1,4 +1,4 @@
-<img alt="Version v1.0" src="https://img.shields.io/badge/version-v1.0-blue?style=for-the-badge"> <img alt="GPL-2.0 license" src="https://img.shields.io/github/license/anthares101/the3musketeers-k8s-lab-hyperv?style=for-the-badge">
+<img alt="Version v1.0" src="https://img.shields.io/badge/version-v1.0-blue?style=for-the-badge"> <img alt="GPL-2.0 license" src="https://img.shields.io/github/license/anthares101/the3musketeers-k8s-lab-hyperv?style=for-the-badge&kill-cache=1">
 
 # K8S lab on Hyper-V
 
