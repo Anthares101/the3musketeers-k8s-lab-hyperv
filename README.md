@@ -1,6 +1,6 @@
 <img alt="Version v1.0" src="https://img.shields.io/badge/version-v1.0-blue?style=for-the-badge"> <img alt="GPL-2.0 license" src="https://img.shields.io/github/license/anthares101/the3musketeers-k8s-lab-hyperv?style=for-the-badge">
 
-# K8S lab on Hyperv
+# K8S lab on Hyper-V
 
 The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements.
 
@@ -67,8 +67,10 @@ You can tweak what Kubernetes version is gonna be installed by changing the vari
 
 ## Deploy
 
-Vagrant is gonna start three Ubuntu machines alongside a NAT switch called T3MSwitch with the
-IP range 10.10.20.0/24, you may need to tweak this a bit if you have conflicts.
+Vagrant is gonna start three Ubuntu machines alongside a NAT switch called T3MSwitch:
+- Master node: t3m_athos (10.10.20.2).
+- Worker node 1: t3m_porthos (10.10.20.3).
+- Worker node 2: t3m_aramis (10.10.20.4).
 
 Put the repository directory anywhere **outside** WSL, for some reason Vagrant hates to be launched in WSL directories. Also, make sure the WSL console is run as administrator:
 ```bash
@@ -76,10 +78,11 @@ Put the repository directory anywhere **outside** WSL, for some reason Vagrant h
 vagrant up
 ```
 
-In order to check the cluster status, connect to `t3m_athos` and login with the credentials `vagrant:vagrant`. Now execute this:
+In order to check the cluster status, connect to `t3m_athos` (Through Hyper-V GUI or SSH) and login with the credentials `vagrant:vagrant`. Now execute this:
 ```bash
 kubectl get nodes
 ```
+You can connect to any of the other nodes too using the same credentials.
 
 The command result should be something like:
 ```
