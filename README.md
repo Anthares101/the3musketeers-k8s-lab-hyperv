@@ -1,10 +1,19 @@
+<img alt="Version v1.0" src="https://img.shields.io/badge/version-v1.0-blue?style=for-the-badge"> <img alt="GPL-2.0 license" src="https://img.shields.io/github/license/anthares101/the3musketeers-k8s-lab-hyperv?style=for-the-badge">
+
 # K8S lab on Hyperv
 
 The idea of this project is to create an easy to deploy Kubernetes environment where different scenarios can be installed to practice Red Team or Pentesting engagements.
 
+![Image of the lab up and running](./static/lab-ready.png)
+
 Ansible playbooks used to provision K8S were adapted from [torgeirl/kubernetes-playbooks](https://github.com/torgeirl/kubernetes-playbooks).
 
+> [!NOTE]
+> No ingress controller is installed in the base lab since some of the scenarios install specific versions of these components.
+
 ## Pre-requisites
+
+The next steps should be executed with Powerhell unless indicated otherwise:
 
 1. Enable Hyper-V as administrator:
    ```powershell
@@ -87,8 +96,9 @@ The scenarios are installed/uninstalled using Ansible playbooks, visit the [scen
 
 ## Clean up
 
-If you want to just get rid of everything execute these commands:
-1. Remove lab (Inside WSL):
+If you want to just get rid of everything execute these commands. They should be executed with Powerhell unless indicated otherwise:
+
+1. Remove lab (Inside WSL as administrator):
    ```bash
    vagrant destroy -f
    ```
