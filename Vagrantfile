@@ -23,16 +23,16 @@ Vagrant.configure("2") do |config|
 
 
   # Machine images
-  ubuntu2204 = "generic/ubuntu2204"
+  image = "generic/ubuntu2204"
 
   # Types of connection
   com_ssh = "ssh"
 
   # VM configuration (Make sure IPs are in the range 10.10.20.0/24, the gateway is 10.10.20.1)
   vms = [
-         {name: "athos", ip: "10.10.20.2", box: ubuntu2204, communicator:com_ssh},
-         {name: "porthos", ip: "10.10.20.3", box: ubuntu2204, communicator:com_ssh},
-         {name: "aramis", ip: "10.10.20.4", box: ubuntu2204, communicator:com_ssh}
+         {name: "athos", ip: "10.10.20.2", box: image, communicator:com_ssh},
+         {name: "porthos", ip: "10.10.20.3", box: image, communicator:com_ssh},
+         {name: "aramis", ip: "10.10.20.4", box: image, communicator:com_ssh}
         ]
 
   vms.each do |vm|
