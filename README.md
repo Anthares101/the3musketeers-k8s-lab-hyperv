@@ -63,7 +63,14 @@ The next steps should be executed with Powerhell unless indicated otherwise:
 
 ## Choosing Kubernetes version
 
-You can tweak what Kubernetes version is gonna be installed by changing the variable `kubernetes_version` in the file `ansible/group_vars/all.yaml`.
+You can tweak what Kubernetes version is gonna be installed by changing the variable `kubernetes_version` in the file [ansible/group_vars/all.yaml](ansible/group_vars/all.yaml).
+
+## Choosing OS version
+
+All the nodes use Ubuntu 22.04 by default, if you want to install another OS version to test, for example, kernel exploits for container scape, modify the machine image version used by Vagrant in the file [Vagrantfile](Vagrantfile). You can find available Vagrant images at https://app.vagrantup.com/boxes/search.
+
+> [!WARNING]
+> The lab installation was only tested using Ubuntu 22.04, downgrading/updating the Ubuntu version or installing any Debian based distro should be fine. If you install anything not Debian based the installation process is likely gonna fail.
 
 ## Deploy
 
