@@ -124,3 +124,4 @@ If you want to just get rid of everything execute these commands. They should be
    Disable-WindowsOptionalFeature -Online -FeatureName HypervisorPlatform
    Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
    ```
+4. Delete the directory `C:\Users\YOUR_USERNAME\.vagrant.d`, Vagrant creates it to store the boxes images and some more stuff.
