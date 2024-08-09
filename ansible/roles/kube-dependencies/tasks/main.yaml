@@ -1,8 +1,4 @@
 ---
-  - name: update APT packages
-    apt:
-      update_cache: yes
-  
   - name: reboot and wait for reboot to complete
     reboot:
   
@@ -15,19 +11,6 @@
       path: /etc/fstab
       regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
       replace: '# \1'
-  
-  - name: create an empty file for the Containerd module
-    copy:
-      content: ""
-      dest: /etc/modules-load.d/containerd.conf
-      force: no
-  
-  - name: configure modules for Containerd
-    blockinfile:
-      path: /etc/modules-load.d/containerd.conf
-      block: |
-           overlay
-           br_netfilter
   
   - name: create an empty file for Kubernetes sysctl params
     copy:
@@ -46,22 +29,24 @@
   
   - name: apply sysctl params without reboot
     command: sysctl --system
+ 
+  - name: create an empty file for the Kubernetes modules
+    copy:
+      content: ""
+      dest: /etc/modules-load.d/kubernetes.conf
+      force: no
+  
+  - name: configure modules for Kubernetes
+    blockinfile:
+      path: /etc/modules-load.d/kubernetes.conf
+      block: |
+           br_netfilter
   
   - name: install APT Transport HTTPS
     apt:
       name: apt-transport-https
       state: present
-  
-  - name: add Docker's APT repository
-    ansible.builtin.deb822_repository:
-      name: docker
-      types: [deb]
-      uris: "https://download.docker.com/linux/{{ ansible_distribution | lower }}"
-      signed_by: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
-      suites: ["{{ ansible_distribution_release | lower }}"]
-      components: [stable]
-      state: present
-      enabled: yes
+      update_cache: true
   
   - name: add Kubernetes's APT repository
     ansible.builtin.deb822_repository:
@@ -72,30 +57,26 @@
       suites: ["/"]
       state: present
       enabled: yes
-  
-  - name: install Containerd
-    apt:
-      name: containerd
-      update_cache_retry_max_delay : 30
+ 
+  - name: add CRI-O's APT repository
+    ansible.builtin.deb822_repository:
+      name: cri-o
+      types: [deb]
+      uris: "https://pkgs.k8s.io/addons:/cri-o:/stable:/v{{ kubernetes_version  }}/deb/"
+      signed_by: https://pkgs.k8s.io/addons:/cri-o:/stable:/v{{ kubernetes_version  }}/deb/Release.key
+      suites: ["/"]
       state: present
+      enabled: yes
   
-  - name: create Containerd directory
-    file:
-      path: /etc/containerd
-      state: directory
+  - name: install CRI-O
+    apt:
+      name: cri-o
+      state: present
+      update_cache: true
   
-  - name: add Containerd configuration
-    shell: /usr/bin/containerd config default > /etc/containerd/config.toml
-  
-  - name: configuring the systemd cgroup driver for Containerd
-    lineinfile:
-      path: /etc/containerd/config.toml
-      regexp: '            SystemdCgroup = false'
-      line: '            SystemdCgroup = true'
-  
-  - name: enable the Containerd service and start it
+  - name: enable the CRI-O service and start it
     systemd:
-      name: containerd
+      name: crio
       state: restarted
       enabled: yes
       daemon-reload: yes
@@ -104,7 +85,6 @@
     apt:
       name: kubelet={{ kubernetes_version  }}.*
       state: present
-      update_cache: true
   
   - name: install Kubeadm
     apt:
@@ -115,21 +95,6 @@
     service:
       name: kubelet
       enabled: yes
-  
-  - name: load br_netfilter kernel module
-    modprobe:
-      name: br_netfilter
-      state: present
-  
-  - name: set bridge-nf-call-iptables
-    sysctl:
-      name: net.bridge.bridge-nf-call-iptables
-      value: 1
-  
-  - name: set ip_forward
-    sysctl:
-      name: net.ipv4.ip_forward
-      value: 1
   
   - name: reboot and wait for reboot to complete
     reboot:
