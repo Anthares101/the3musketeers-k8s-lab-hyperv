@@ -100,6 +100,19 @@ athos     Ready    control-plane   146m    v1.29.4
 porthos   Ready    <none>          20m     v1.29.4
 ```
 
+It is recomended to restart the DNS pods to avoid problems, connect to the master node and identify the DNS pods:
+
+```bash
+kubectl get pods -n kube-system | grep dns
+```
+
+Now, delete the pods you got from the last command:
+
+```bash
+# The pod names will be different in your case!
+kubectl delete pods -n kube-system coredns-76f75df574-j5slh coredns-76f75df574-kxpbv
+```
+
 ## Scenarios
 
 The scenarios are installed/uninstalled using Ansible playbooks, visit the [scenarios/](scenarios/) directory to check the available scenarios and learn more about how to use the playbooks provided.
