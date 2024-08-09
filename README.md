@@ -89,9 +89,7 @@ In order to check the cluster status, connect to `t3m_athos` (Through Hyper-V GU
 ```bash
 kubectl get nodes
 ```
-You can connect to any of the other nodes too using the same credentials.
-
-The command result should be something like:
+You can connect to any of the other nodes too using the same credentials. The command result should be something like:
 ```
 vagrant@athos:~$ kubectl get nodes
 NAME      STATUS   ROLES           AGE     VERSION
