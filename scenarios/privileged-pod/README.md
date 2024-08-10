@@ -8,7 +8,7 @@ ssh pwned@10.10.20.2 -p 30025 # Password: pwned
 
 Privileged containers have a lot of control over the host they run on. Practically, privileged containers can do almost every action that can be performed directly on the host so scaping to the Kubernetes worker is possible. In order to abuse this, root access to the pod container is needed so the SSH pod provided allows the pwned user to use `sudo`.
 
-How you know that that a container is privileged? Well you could use `amicontained` to see that you have all the capabilities. Also, since the container has access to all the devices attached to the host system you would see a lot of devices under the `/dev` directory instead of just a couple of them:
+How you know that a container is privileged? Well you could use `amicontained` to see that you have all the capabilities. Also, since the container has access to all the devices attached to the host system you would see a lot of devices under the `/dev` directory instead of just a couple of them:
 
 ```bash
 wget https://github.com/genuinetools/amicontained/releases/download/v0.4.9/amicontained-linux-amd64 -O amicontained

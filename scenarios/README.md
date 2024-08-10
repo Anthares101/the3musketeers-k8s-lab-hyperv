@@ -6,7 +6,7 @@ All the scenarios have 2 Ansible playbooks, one to install the scenario and anot
 
 ## Pre-requisites
 
-Inside WSL, move to this directory and execute these commands to prepare your Ansible environment:
+Inside WSL, move to any scenario directory and execute these commands to prepare your Ansible environment:
 
 ```bash
 ansible-galaxy install -r requirements.yaml
