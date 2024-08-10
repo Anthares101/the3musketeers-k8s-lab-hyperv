@@ -67,4 +67,5 @@ root@aramis:~#
 ## References
 
 - https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+- https://bishopfox.com/blog/kubernetes-pod-privilege-escalation
 - https://www.cncf.io/blog/2020/10/16/hack-my-mis-configured-kubernetes-privileged-pods/
