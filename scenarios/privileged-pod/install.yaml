@@ -1,0 +1,23 @@
+---
+- name: Install scenario
+  hosts: master
+  gather_facts: false
+  collections:
+  - community.kubernetes
+
+  tasks:
+  - name: Ensure pip is installed
+    become: true
+    apt:
+      name: 
+      - python3-pip
+      state: present
+      update_cache: true
+  - name: Ensure kubernetes Python library is installed.
+    pip:
+      name: kubernetes
+      state: present
+  - name: Deploy scenario
+    kubernetes.core.k8s:
+      state: present
+      definition: "{{ lookup('template', 'deploy.yaml.j2') | from_yaml_all }}"

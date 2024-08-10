@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    name: least-privilege-service-account
-  name: least-privilege-service-account
+    name: privileged-pod
+  name: privileged-pod
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ssh-pod
-  namespace: least-privilege-service-account
+  namespace: privileged-pod
 spec:
   type: NodePort
   selector:
@@ -18,7 +18,7 @@ spec:
     - protocol: TCP
       port: 2222
       targetPort: 2222
-      nodePort: 30024
+      nodePort: 30025
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -26,7 +26,7 @@ metadata:
   labels:
     app: ssh-pod
   name: ssh-pod
-  namespace: least-privilege-service-account
+  namespace: privileged-pod
 spec:
   replicas: 1
   selector:
@@ -40,6 +40,8 @@ spec:
       containers:
       - image: lscr.io/linuxserver/openssh-server:latest
         imagePullPolicy: Always
+        securityContext:
+          privileged: true
         name: ssh-pod
         env:
         - name: PUID
@@ -49,7 +51,7 @@ spec:
         - name: TZ
           value: "Europe/Madrid"
         - name: SUDO_ACCESS
-          value: "false"
+          value: "true"
         - name: PASSWORD_ACCESS
           value: "true"
         - name: USER_PASSWORD

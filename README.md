@@ -1,4 +1,4 @@
-<img alt="Version v1.0" src="https://img.shields.io/badge/version-v1.0-blue?style=for-the-badge"> <img alt="GPL-2.0 license" src="https://img.shields.io/github/license/anthares101/the3musketeers-k8s-lab-hyperv?style=for-the-badge&kill-cache=1">
+<img alt="Version v1.1" src="https://img.shields.io/badge/version-v1.1-blue?style=for-the-badge"> <img alt="GPL-2.0 license" src="https://img.shields.io/github/license/anthares101/the3musketeers-k8s-lab-hyperv?style=for-the-badge&kill-cache=1">
 
 # K8S lab on Hyper-V
 
@@ -98,7 +98,7 @@ athos     Ready    control-plane   146m    v1.29.4
 porthos   Ready    <none>          20m     v1.29.4
 ```
 
-It is recomended to restart the DNS pods to avoid problems, connect to the master node and identify the DNS pods:
+As last step, looks like the DNS pods refuse to work properly at first so a restart is needed, connect to the master node and identify the DNS pods:
 
 ```bash
 kubectl get pods -n kube-system | grep dns
